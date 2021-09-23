@@ -56,5 +56,5 @@ Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进
 
 参考资料不仅限于以下说明：  
 官方文档：https://v3.cn.vuejs.org/  
-中文教程：https://v3.cn.vuejs.org/guide/introduction.html
+中文教程：https://v3.cn.vuejs.org/guide/introduction.html  
 Vue.js相关书籍和各种同行博客。  
