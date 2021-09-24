@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-cloak 指令</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hello-vue" v-cloak>
+      <div>显示数据： {{message}}</div>
+      <div v-text="message =  (new Date().getYear() + 1900)"></div>
+      <div>改变后的数据： {{ message }}年</div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            message: "我是初始化的数据!!",
+          };
+        },
+        beforeCreated(){
+          
+        }
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

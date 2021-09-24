@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 3 的 Hello World!</title>
+    <!-- 第一步： 引入 Vue.js 框架-->
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="hello-vue">第四步： 显示内容 {{ message }}</div>
+    <script type="text/javascript">
+      //第二步： 声明式的 模板语法 这个有一个固定的语法糖格式。
+      const HelloVueApp = {
+        data() {
+          return {
+            message: "Hello Vue.js!!",
+          };
+        },
+      };
+      // 第三步： 初始化 Vue 的应用
+     const vm = Vue.createApp(HelloVueApp).mount("#hello-vue");
+     console.log(vm.$data.message)
+    </script>
+  </body>
+</html>

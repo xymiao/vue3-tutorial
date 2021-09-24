@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3 中 data 为函数的模拟</title>
+    <script type="text/javascript">
+      var Vue = function () {
+        this.data = this.dataFun();
+      };
+      Vue.prototype.dataFun = function () {
+        return {
+          a: 1,
+          b: 2,
+        };
+      };
+      var v1 = new Vue();
+      var v2 = new Vue();
+      v1.data.a = 5;
+      console.log(v1.data.a, v2.data.a); //5 1
+    </script>
+  </head>
+  <body></body>
+</html>
