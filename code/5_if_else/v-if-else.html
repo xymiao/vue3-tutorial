@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-if-else 指令 基础用法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="hello-vue" v-cloak>
+      <div>v-if-else 用法</div>
+      <div v-if="userLevel == '普通'">你是 {{ userLevel }} 用户。只能看到基础的功能哦！</div>
+      <div v-else-if="userLevel == '中级'">你是 {{ userLevel }} 用户。可以看到高级的功能哦！</div>
+      <div v-else-if="userLevel == '高级'">你是 {{ userLevel }} 用户。可以看到全部的功能哦！</div>
+      <div v-else>没有找到你的角色信息</div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            userLevel: "高级",
+            message: "当条件为真的时候， 我才会显示出来!!",
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

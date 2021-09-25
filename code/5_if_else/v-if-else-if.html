@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-if 指令 基础用法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="hello-vue" v-cloak>
+      <div>v-if 用法 - {{ adminFlag }}</div>
+      <div v-if="adminFlag">您当前有超级管理员的权限， 你可以操作所有的功能。</div>
+      <div v-else>您没有超级管理员的权限。</div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            adminFlag: false,
+            message: "当条件为真的时候， 我才会显示出来!!",
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>
