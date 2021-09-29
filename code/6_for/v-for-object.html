@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-for 指令 遍历对象用法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      table {
+        border-spacing: 0;
+      }
+      td {
+        padding: 5px;
+        border: 1px #ccc solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>{{user.userName}}的信息</div>
+      <table>
+        <tr>
+          <td v-for="u in user">{{u}}</td>
+        </tr>
+        <tr>
+          <td v-for="(u, name) in user">{{name}} : {{u}}</td>
+        </tr>
+        <tr>
+          <td v-for="(u, name, index) in user">{{index}} - {{name}} : {{u}}</td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            user: {
+              userId: "10001",
+              userName: "张三",
+              score: 1000,
+              role: "1",
+            },
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

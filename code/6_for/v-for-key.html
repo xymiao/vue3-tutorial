@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>v-for 指令 key 属性 基础用法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      table {
+        border-spacing: 0;
+      }
+      td {
+        padding: 5px;
+        border: 1px #ccc solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>用户列表</div>
+      <table>
+        <tr v-for="user in userList" :key="user.userId">
+          <td>{{user.userId}}</td>
+          <td>{{user.userName}}</td>
+          <td>{{user.score}}</td>
+          <td>{{user.role}}</td>
+        </tr>
+      </table>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            userList: [
+              { userId: "10001", userName: "张三", score: 1000, role: "1" },
+              { userId: "10002", userName: "苗子", score: 0, role: "0" },
+              { userId: "10003", userName: "张三", score: 1000, role: "1" },
+              { userId: "10004", userName: "张三", score: 1000, role: "1" },
+            ],
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>
