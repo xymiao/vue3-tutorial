@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js once 修饰符</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>once 修饰符</div>
+      <button @click="onceMethod">调用普通事件</button> &nbsp;&nbsp;
+      <button @click.once="onceMethod">调用 once 事件</button>
+      <div>{{message}}</div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            index: 0,
+            message: "",
+          };
+        },
+        methods: {
+          onceMethod() {
+            this.index++;
+            this.message = "我被调用了 " + this.index;
+          },
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

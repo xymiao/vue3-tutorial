@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js passive 修饰符</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+      .c {
+        float: left;width: 400px;max-height: 400px;overflow: hidden;
+        overflow-y: scroll;border: 1px #ccc solid;   }
+    </style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>passive 修饰符</div>
+      <div @scroll.passive="onScroll" class="c">
+        <div>
+          <template v-for="n in 100">1<br /></template>
+        </div>
+      </div>
+      <div class="c" v-html="message" id="scrollAuto"></div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            message: "",
+          };
+        },
+        methods: {
+          onScroll(event) {
+            this.message += event.target.scrollTop + "<br/>";
+            let scrollAuto = document
+              .getElementById("scrollAuto");
+              scrollAuto
+              .scroll(scrollAuto.x, scrollAuto.scrollHeight);
+          },
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

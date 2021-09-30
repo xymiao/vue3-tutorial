@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 多个事件调用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>事件处理</div>
+      <button @click="sayHello(), sayHello2()">同时调用两个事件</button>
+      <div>{{ message }}</div>
+      <div>{{ eventMessage }}</div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            message: "",
+            eventMessage: "",
+          };
+        },
+        methods: {
+          sayHello() {
+            this.message ="one hello world !!";
+          },
+          sayHello2() {
+            this.eventMessage = "two hello world !!";
+          },
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>
