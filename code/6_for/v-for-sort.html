@@ -4,16 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>v-for 指令 过滤 filter</title>
+    <title>v-for 指令 排序</title>
     <script src="https://unpkg.com/vue@next"></script>
     <style>
-      table {
-        border-spacing: 0;
-      }
-      td {
-        padding: 5px;
-        border: 1px #ccc solid;
-      }
+      table { border-spacing: 0; }
+      td { padding: 5px;  border: 1px #ccc solid;}
     </style>
   </head>
   <body>
@@ -21,7 +16,7 @@
       <div>排序简单实现</div>
       <table>
         <tr>
-          <td v-for="item in listFilter" :key="item">{{ item }}</td>
+          <td v-for="item in listSort" :key="item">{{ item }}</td>
         </tr>
       </table>
     </div>
@@ -34,7 +29,7 @@
         },
         computed: {
           listSort() {
-            return this.list.sort();
+            return this.list.sort((a, b)=> b - a); // 修改 a - b 和 b - a 的区别。
           },
         },
       };
