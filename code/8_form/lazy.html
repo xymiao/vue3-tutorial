@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 表单 - lazy 修饰符</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>input 表单</div>
+      <form>
+          <input name="userName" v-model.lazy="userName" />
+      </form>
+      <div>双向绑定: {{ userName }}</div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            userName: '',
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

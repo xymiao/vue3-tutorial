@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 表单 - input type checkbox</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>input checkbox 表单</div>
+      <form>
+          状态： <input type="checkbox" name="status" v-model="status" />{{status}}
+      </form>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            status: false,
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

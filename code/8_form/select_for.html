@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 表单 - select v-for</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>select 表单</div>
+      <select v-model="selected" >
+        <option disabled value="">Please select one</option>
+        <option v-for="item in options" :value="item.value">
+          {{item.text}}
+        </option>
+      </select>
+      <div><span>已选： {{ selected }}</span></div>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            selected: "",
+            options: [
+              { text: "A", value: "A" },
+              { text: "B", value: "A" },
+              { text: "C", value: "A" },
+            ],
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>

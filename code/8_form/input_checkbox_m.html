@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js 表单 - input type checkbox</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="hello-vue">
+      <div>input checkbox 多选</div>
+      <form>
+        类型：
+        <input type="checkbox" name="type" v-model="type" value="普通" />
+        <label>普通</label>
+        <input type="checkbox" name="type" v-model="type" value="中级" />
+        <label>中级</label>
+        <input type="checkbox" name="type" v-model="type" value="高级" />
+        <label>高级</label>
+        <div>已选： {{type}}</div>
+      </form>
+    </div>
+    <script type="text/javascript">
+      const HelloVueApp = {
+        data() {
+          return {
+            type: [],
+          };
+        },
+      };
+      Vue.createApp(HelloVueApp).mount("#hello-vue");
+    </script>
+  </body>
+</html>
