@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 props 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="components-blog">
+      <div>组件 props 中使用 v-for</div>
+      <blog-post
+        v-for="post in posts"
+        :key="post.id"
+        :title="post.title"
+      ></blog-post>
+    </div>
+    <script type="text/javascript">
+      const App = {
+        data() {
+          return {
+            posts: [
+              { id: 1, title: "Vue.js 的学习指南" },
+              { id: 2, title: "Vue.js 组件学习" },
+              { id: 3, title: "Vue.js 的 props 使用" },
+            ],
+          };
+        },
+      };
+
+      const app2 = Vue.createApp(App);
+      // 定义一个名为 button-counter 的新全局组件
+      app2.component("blog-post", {
+        props: ["title"],
+        template: `
+          <h1>{{ title }}</h1>   
+        `,
+      });
+
+      app2.mount("#components-blog");
+    </script>
+  </body>
+</html>
