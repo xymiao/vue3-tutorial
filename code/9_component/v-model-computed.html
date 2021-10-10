@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 v-model 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="custom-app">
+      <custom-input v-model="searchText"></custom-input>
+       {{searchText}}
+    </div>
+    <script type="text/javascript">
+      const CustomApp = {
+        data() {
+          return {
+            searchText: "",
+          };
+        },
+      };
+      const app = Vue.createApp(CustomApp);
+      app.component("custom-input", {
+        props: ["modelValue"],
+        emits: ["update:modelValue"],
+        computed: {
+          value: {
+            get() {
+              return this.modelValue;
+            },
+            set(value) {
+              this.$emit("update:modelValue", value);
+            },
+          },
+        },
+        template: `
+          可以传递：<input v-model="value"/>
+        `,
+      });
+
+      app.mount("#custom-app");
+    </script>
+  </body>
+</html>

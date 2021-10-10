@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 v-model 自定义修饰符</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="custom-app">
+      <custom-input v-model.capitalize="id" v-model:title.capitalize="title"
+      ></custom-input>
+      <br />  id: {{id}} <br />  title: {{title}}
+    </div>
+    <script type="text/javascript">
+      const CustomApp = {
+        data() {
+          return {
+            id: "", title: "",
+          };
+        },
+      };
+      const app = Vue.createApp(CustomApp);
+      app.component("custom-input", {
+        props: ["modelValue", "title", "modelModifiers", "titleModifiers"],
+        emits: ["update:modelValue", "update:title"],
+        methods: {
+          emitValue(e) {
+            let value = e.target.value;
+            if (this.modelModifiers.capitalize) {
+              value = value.charAt(0).toUpperCase() + value.slice(1);
+            }
+            this.$emit("update:modelValue", value);
+          },
+        },
+        template: `
+          log:  {{this.modelModifiers}}, {{this.titleModifiers}} <br>
+          id：<input
+          :value="modelValue"
+          @input="emitValue"/>
+          <br>
+          title：<input
+          :value="title"
+          @input="$emit('update:title', $event.target.value)"/>
+        `,
+      });
+      app.mount("#custom-app");
+    </script>
+  </body>
+</html>

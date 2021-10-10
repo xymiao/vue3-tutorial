@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 event 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="components-blog">
+      <div :style="{ fontSize: postFontSize + 'em' }">
+        <blog-post :post="post" @enlarge-text="postFontSize += $event"
+         :post-font-size="postFontSize"></blog-post>
+        <blog-post :post="post"  @enlarge-text="onEnlargeText"
+          :post-font-size="postFontSize" ></blog-post>
+      </div>
+    </div>
+    <script type="text/javascript">
+      const PostApp = {
+        data() {
+          return {
+            postFontSize: 1,
+            post: {
+              title: "Vue.js 的学习指南 我是来自 data",
+              content: "苗子说全栈，从 0 开始图文教程 Vue.js 3 到项目实战。",
+              likes: "30", isPublished: true,
+            },
+          };
+        },
+        methods:{
+          onEnlargeText(enlargeAmount){
+            this.postFontSize += enlargeAmount
+          },
+        }
+      };
+
+      const app = Vue.createApp(PostApp);
+      app.component("blog-post", {
+        props: ["post", "postFontSize"],
+        template: `
+          <h3>{{ post.title }}  &nbsp;&nbsp;点赞：
+            {{post.likes == null ? '0' : post.likes}}</h3>  
+            <p>发布：{{post.isPublished ? '已发布':'未发布'}}
+            &nbsp;&nbsp;字号:<button @click="$emit('enlargeText', 0.1)"> + </button></p> 
+            <div>{{post.content}}</div>
+        `,
+      });
+      app.mount("#components-blog");
+    </script>
+  </body>
+</html>

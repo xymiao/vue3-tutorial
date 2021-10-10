@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 v-model 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="custom-app">
+      <custom-input v-model:title="title" v-model:id="id"></custom-input>
+   <br>  id: {{id}} <br> title: {{title}}
+    </div>
+    <script type="text/javascript">
+      const CustomApp = {
+        data() {
+          return {
+            id: "",
+            title: "",
+          };
+        },
+      };
+      const app = Vue.createApp(CustomApp);
+      app.component("custom-input", {
+        props: ["title", 'id'],
+        emits: ["update:title", "update:id"],
+        template: `
+          id：<input
+          :value="id"
+          @input="$emit('update:id', $event.target.value)"/>
+          <br>
+          title：<input
+          :value="title"
+          @input="$emit('update:title', $event.target.value)"/>
+        `,
+      });
+      app.mount("#custom-app");
+    </script>
+  </body>
+</html>
