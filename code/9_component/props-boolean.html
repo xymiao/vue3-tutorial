@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 props 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="components-blog">
+      <div>组件 props 使用</div>
+      <blog-post title="Vue.js 的学习指南" :likes="20" :is-published="true"></blog-post>
+      <blog-post title="Vue.js 组件学习" :likes="10" :is-published="false"></blog-post>
+      <blog-post title="Vue.js 的 props 使用" :is-published="post.isPublished"></blog-post>
+    </div>
+    <script type="text/javascript">
+      const PostApp = {
+        data() {
+          return {
+            post: {'isPublished': true},
+          };
+        },
+      };
+      // 创建一个Vue 应用
+      const app = Vue.createApp(PostApp);
+      
+      app.component("blog-post", {
+        props: ['title', 'likes', 'is-published'],
+        template: `
+          <h1>{{ title }}  &nbsp;&nbsp;点赞：
+            {{likes == null ? '0' : likes}}</h1>  
+            <p>发布：{{isPublished}}</p> 
+        `,
+      });
+
+      app.mount("#components-blog");
+    </script>
+  </body>
+</html>

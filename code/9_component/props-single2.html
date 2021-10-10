@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 props 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="components-blog">
+      <div><button @click="postShow = !postShow">{{postShow}}{{postShow ? '隐藏':'显示'}}</button></div>
+      <blog-post :post="post" :post-show="postShow" ></blog-post>
+    </div>
+    <script type="text/javascript">
+      const PostApp = {
+        data() {
+          return {
+            postShow: false,
+            post: {title: 'Vue.js 的学习指南 我是来自 data', likes: '30', isPublished: true},
+          };
+        },
+      };
+      // 创建一个Vue 应用
+      const app = Vue.createApp(PostApp);
+      app.component("blog-post", {
+        props: ['post', 'post-show'],
+        computed:{
+          show(){
+            return this.postShow;
+          }
+        },
+        template: `
+        <template v-if="postShow">
+          <h4>{{ post.title }}  &nbsp;&nbsp;点赞：
+            {{post.likes == null ? '0' : post.likes}}</h4>  
+            <p>发布：{{post.isPublished ? '已发布':'未发布'}}</p> 
+            <p>状态(内部使用了)：{{ show }}  </p>
+        </template>`,
+      });
+      app.mount("#components-blog");
+    </script>
+  </body>
+</html>

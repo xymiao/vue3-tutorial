@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 props 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="components-blog">
+      <div>组件 props 使用</div>
+      <blog-post title="Vue.js 的学习指南" :likes="20" 
+      :is-published="true" :comment-ids="[200, 201, 202]"></blog-post>
+    </div>
+    <script type="text/javascript">
+      const PostApp = {
+        data() {
+          return {
+            post: {'isPublished': true},
+          };
+        },
+      };
+      // 创建一个Vue 应用
+      const app = Vue.createApp(PostApp);
+      app.component("blog-post", {
+        props: ['title', 'likes', 'is-published', 'comment-ids'],
+        data(){
+          return {
+            commentList: {200 : {comment:"测试评论的"}, 
+              201 : {comment:"写的一般， 给你个赞安慰一下"},
+              202 : {comment:"加油吧！"},},
+          }
+        },
+        template: `
+          <h1>{{ title }}  &nbsp;&nbsp;点赞：
+            {{likes == null ? '0' : likes}}</h1>  
+            <p>发布：{{isPublished ? '已发布':'未发布'}}</p> 
+            <div>评论： <div v-for="(item,index) in commentIds" :key="item.title">
+            {{++index}}.  {{ commentList[item].comment }}</div></div>
+        `,
+      });
+      app.mount("#components-blog");
+    </script>
+  </body>
+</html>
