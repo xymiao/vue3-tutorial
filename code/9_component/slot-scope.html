@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 slot 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="slot-app">
+      <base-scope v-slot:default="props">
+        <span>{{props.index}}</span>
+        <span>{{props.item}}</span>
+      </base-scope>
+      <base-scope v-slot:default="{item, index}">
+        <span>{{index}}</span>
+        <span>{{item}}</span>
+      </base-scope>
+      <base-scope v-slot:default="{item: info, index}">
+        <span>{{index}}</span>
+        <span>{{info}}</span>
+      </base-scope>
+    </div>
+    <script type="text/javascript">
+      const app = Vue.createApp({});
+      app.component("base-scope", {
+        data() {
+          return {
+            items: ["努力肝教程", "早日完成造轮子"],
+          };
+        },
+        template: `
+        <ul>
+          <li v-for="(item, index) in items">
+            <slot :item="item" :index="index"></slot>
+          </li>
+        </ul>
+        `,
+      });
+      app.mount("#slot-app");
+    </script>
+  </body>
+</html>

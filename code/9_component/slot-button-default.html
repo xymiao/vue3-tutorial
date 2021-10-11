@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 slot 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="slot-app">
+      <mz-button></mz-button> &nbsp;&nbsp;
+      <mz-button> 新增 </mz-button> &nbsp;&nbsp;
+    </div>
+    <script type="text/javascript">
+      const SlotApp = {
+        data() {
+          return {};
+        },
+      };
+      const app = Vue.createApp(SlotApp);
+      app.component("mz-button", {
+        template: `
+        <button class="btn-primary">
+          <slot>提交</slot>
+        </button>
+        `,
+      });
+      app.mount("#slot-app");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js 组件 slot 使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="slot-app">
+      <base-layout>
+        <template v-slot:header>
+          <h1>我是页头， 这里可以是标题</h1>
+        </template>
+        <template v-slot:default>
+          <p>这个是页面主要内容.</p>
+          <p>和其他的一些说明.</p>
+        </template>
+        <template v-slot:footer>
+          <p>可以填写页脚信息 @2021</p>
+        </template>
+      </base-layout>
+      <template #header>
+        <h1>我是页头， 这里可以是标题</h1>
+      </template>
+      <base-layout>
+        <template #default>
+          <p>这个是页面主要内容.</p>
+          <p>和其他的一些说明.</p>
+        </template>
+        <template #footer>
+          <p>可以填写页脚信息 @2021</p>
+        </template>
+      </base-layout>
+    </div>
+    <script type="text/javascript">
+      const app = Vue.createApp({});
+      app.component("base-layout", {
+        template: `
+        <div class="container">
+          <header> <slot name="header"></slot> </header>
+          <main> <slot></slot> </main>
+          <footer> <slot name="footer"></slot> </footer>
+        </div>
+        `,
+      });
+      app.mount("#slot-app");
+    </script>
+  </body>
+</html>
